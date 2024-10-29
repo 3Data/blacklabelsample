@@ -2,11 +2,19 @@
 
 import Link from "next/link";
 import Script from "next/script";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Home({ params }) {
   const { nick } = params;
   const hybridClientRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      console.log("SM_DESTROY_STREAM");
+      const data = { name: "SM_DESTROY_STREAM" };
+      window.postMessage(data, "*");
+    };
+  }, []);
 
   return (
     <div>
