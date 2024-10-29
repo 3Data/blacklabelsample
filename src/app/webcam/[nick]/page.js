@@ -9,12 +9,15 @@ export default function Home({ params }) {
   const hybridClientRef = useRef(null);
 
   useEffect(() => {
+    const data = { name: "SM_RESET_STREAM" };
+    window.postMessage(data, "*");
+
     return () => {
       console.log("SM_DESTROY_STREAM");
       const data = { name: "SM_DESTROY_STREAM" };
       window.postMessage(data, "*");
     };
-  }, []);
+  }, [nick]);
 
   return (
     <div>
